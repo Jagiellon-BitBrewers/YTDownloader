@@ -8,8 +8,7 @@ The YTDownloader is a Python-based application that enables users to easily down
 - [ ] UI
 
 ## Getting Started:
-
-1. Clone the repository: git clone https://github.com/yourusername/youtube-video-downloader.git
+1. Clone the repository: git clone https://github.com/Jagiellon-BitBrewers/YTDownloader.git
 2. Install dependencies: pip install -r requirements.txt
 3. Run the application and enter the YouTube video URL.
 
