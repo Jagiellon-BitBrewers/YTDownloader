@@ -1,10 +1,10 @@
-from pytube import YouTube
+import yt_dlp
 
-#!! change to your path
-PATH = 'C:\Youtube Downloader\downloaded'
+#!! change to your path if you want
+PATH = 'Downloaded/'
 
 # printing welcome phrase
-print("""
+print(r"""
 Welcome in
 _____.___.___________________                      .__                    .___            
 \__  |   |\__    ___/\______ \   ______  _  ______ |  |   _________     __| _/___________ 
@@ -17,11 +17,15 @@ _____.___.___________________                      .__                    .___
 
 video_url = input('Enter the url of the video you want to download: \n')
 
+def my_hook(d):
+    if d['status'] == 'finished':
+        print('\nDone downloading, now post-processing ...')
 
-try:
-    yt = YouTube(video_url)
-    print('Downloading...')
-    yt.streams.first().download(output_path=PATH)
-    print(f'Your video has been downloaded to a folder: {PATH}')
-except:
-    print("Something isn't right")
+ydl_opts = {
+    'format': 'best',
+    'outtmpl': f'{PATH}%(title)s.%(ext)s',
+    #'progress_hooks': [my_hook],
+}
+
+with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    ydl.download(video_url)
